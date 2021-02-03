@@ -41,6 +41,10 @@ activate it:
 ```bash
 . venv/bin/activate
 ```
+install requirements:
+```bash
+(venv) pip install -r requirements.txt
+```
 and run the program:
 ```bash
 (venv) python3.8 main.py --input puzzle/puzzle_input_test.txt
