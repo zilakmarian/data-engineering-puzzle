@@ -1,86 +1,71 @@
 # Data Engineering puzzle
 
-This puzzle was selected from Advent of Code 2020 for my colleagues at MallGroup.
+This is implementation of Data Engineering puzzle. For more information about the task/puzzle, go to https://github.com/nufrix/data-engineering-puzzle.
 
-## Task
-You have list of numbers (found in the file `puzzle/puzzle_input.txt`). Find out all possible combinations that can be generated from this list, when the following rules are fulfilled:
-* Each sequence starts with 0
-* The difference between each item in valid combination must be between 1 and 3, e.g. sequence `0, 2, 5, 6, 8` is valid, `0, 2, 6, 8` is *not* valid
-* Each number from given list of numbers can be used a maximum of once in each combination.
-* The sequence ends when no other item in given list of numbers can not be used
-* The sequence must be in ascending order
+## How to run this solution
+### 1. Go install Go
+Expecting you already have Go installed on your system. If not, what are you waiting for?
 
-## Example
-List of numbers `1, 2, 3, 5`:
+Go to https://golang.org/doc/install and follow steps for download and installation.
 
-### Valid combinations (examples):
-* `0, 1, 2, 3, 5`
-* `0, 1, 2, 5`
-* `0, 2, 5`
-* `0, 2, 3, 5`
-* `0, 3, 5`
+### 2. Go build Go
+Create executable for your system by running:
 
-### Invalid combinations (examples):
-* `0, 5` because the difference is 5
-* `0, 1, 5` because the difference is 4
-* `0, 2, 3` because not all possible items from given list were used (you have to add 5 at the end)
-* `3, 5` because the sequence doesn't start with 0
-* `0, 3, 2, 5` the sequence order is not ascending
-
-## Testing data
-If you want to test your algorithm, here are some testing data:
-`[28, 33, 18, 42, 31, 14, 46, 20, 48, 47, 24, 23, 49, 45, 19, 38, 39, 11, 1, 32, 25, 35, 8, 17, 7, 9, 4, 2, 34, 10, 3]`
-and the amount if valid combinations that fulfill the rules above is `19208`. 
-
-## Run reference application
-Create your virtual environment:
-```bash
-python3.8 -m venv venv
+For MacOS and Linux
 ```
-activate it:
-```bash
-. venv/bin/activate
+go build -o solve_puzzle puzzle/puzzle.go
 ```
-install requirements:
-```bash
-(venv) pip install -r requirements.txt
+For Windows
+
+Switch to unix-like system, then go back to step 1. Go install Go.
+
+Or you may try running
 ```
-and run the program:
-```bash
-(venv) python3.8 main.py --input puzzle/puzzle_input_test.txt
+go build -o solve_puzzle.exe puzzle\puzzle.go
 ```
-and the expected output is:
-```bash
-Running with puzzle/puzzle_input_test.txt file.
-2021-02-02 16:28:17,669 INFO     Puzzle input: [1, 2, 3, 4, 7, 8, 9, 10, 11, 14, 17, 18, 19, 20, 23, 24, 25, 28, 31, 32, 33, 34, 35, 38, 39, 42, 45, 46, 47, 48, 49] 
-2021-02-02 16:28:17,669 INFO     Computing starting variants.
-2021-02-02 16:28:17,671 INFO     Creating threads for 7 starting variants
-2021-02-02 16:28:17,675 INFO     Create and start thread 0 with variant [0, 1, 2, 4, 7].
-2021-02-02 16:28:17,682 INFO     Create and start thread 1 with variant [0, 2, 3, 4, 7].
-2021-02-02 16:28:17,688 INFO     Create and start thread 2 with variant [0, 3, 4, 7].
-2021-02-02 16:28:17,695 INFO     Create and start thread 3 with variant [0, 1, 2, 3, 4, 7].
-2021-02-02 16:28:17,752 INFO     Create and start thread 4 with variant [0, 1, 4, 7].
-2021-02-02 16:28:17,773 INFO     Create and start thread 5 with variant [0, 1, 3, 4, 7].
-2021-02-02 16:28:17,774 INFO     Create and start thread 6 with variant [0, 2, 4, 7].
-2021-02-02 16:28:18,325 INFO     Found 10000 variants
-2021-02-02 16:28:18,786 INFO     Result: 19208
+(Run at your own risk! Only gods know what will happen, might be good, might be catastrophic...)
+
+### 3. Go run Go
+If all went well, there should be an executable `solve_puzzle`(or `solve_puzzle.exe` for Windows users...). Run it as any other executable:
+
+`./solve_puzzle`
+
+OR
+
+`./solve_puzzle.exe` (not sure how to run executables from cmd in windows, this is just a guess...)
+
+You may want to specify input file as first argument.
+
+`./solve_puzzle path/to/my/puzzle/input.txt`
+
+Input file defaults to `./puzzle/puzzle_input.txt` (you know, the bigger one).
+
+### 4. (Optional) Go make yourself some tea
+You might want something to drink while you wait.
+
+Just kidding, it does not take that long :)
+
+
+## Expected result
+Output to stdout shows length of input (after removing duplicate values), a list of all values (sorted of course, we not animals) and number of all possible variations.
 ```
-If you want to run the reference application with production data:
-```bash
-(venv) python3.8 main.py --input puzzle/puzzle_input.txt
+List(len=31): [1 2 3 4 7 8 9 10 11 14 17 18 19 20 23 24 25 28 31 32 33 34 35 38 39 42 45 46 47 48 49]
+Final result is: 19208
 ```
 
-## Test reference application
-Active you virtualenv:
-```bash
-. venv/bin/activate
+## How do you time this?
+You may use any tool for timing executables. Unix command `time` might be handy.
+
+`time ./solve_puzzle puzzle/puzzle_input.txt`
+
+Example output (times might vary based on resources available):
+
 ```
-move to `tests` directory:
-```bash
-(venv) cd tests/
+List(len=31): [1 2 3 4 7 8 9 10 11 14 17 18 19 20 23 24 25 28 31 32 33 34 35 38 39 42 45 46 47 48 49]
+Final result is: 19208
+
+real    0m0.029s
+user    0m0.050s   <- this number is what we are looking for
+sys     0m0.013s
+
 ```
-and run tests:
-```bash
-(venv) pytest
-```
-and all tests should be OK (and green:) ).
