@@ -51,6 +51,7 @@ Output to stdout shows length of input (after removing duplicate values), a list
 ```
 List(len=31): [1 2 3 4 7 8 9 10 11 14 17 18 19 20 23 24 25 28 31 32 33 34 35 38 39 42 45 46 47 48 49]
 Final result is: 19208
+Sample variation: [[0 1 2 3 4 7 8 9 10 11 14 17 18 19 20 23 24 25 28 31 32 33 34 35 38 39 42 45 46 47 48 49] [0 1 2 3 4 7 8 9 10 11 14 17 18 19 20 23 24 25 28 31 32 33 34 35 38 39 42 45 46 47 49] [0 1 2 3 4 7 8 9 10 11 14 17 18 19 20 23 24 25 28 31 32 35 38 39 42 45 46 47 48 49]]
 ```
 
 ## How do you time this?
@@ -63,9 +64,10 @@ Example output (times might vary based on resources available):
 ```
 List(len=31): [1 2 3 4 7 8 9 10 11 14 17 18 19 20 23 24 25 28 31 32 33 34 35 38 39 42 45 46 47 48 49]
 Final result is: 19208
+Sample variation: [[0 1 2 3 4 7 8 9 10 11 14 17 18 19 20 23 24 25 28 31 32 33 34 35 38 39 42 45 46 47 48 49] [0 1 2 3 4 7 8 9 10 11 14 17 18 19 20 23 24 25 28 31 32 33 34 35 38 39 42 45 46 47 49] [0 1 2 3 4 7 8 9 10 11 14 17 18 19 20 23 24 25 28 31 32 35 38 39 42 45 46 47 48 49]]
 
-real    0m0.029s
-user    0m0.050s   <- this number is what we are looking for
-sys     0m0.013s
+real	0m0.037s    <- this number is what we are looking for
+user	0m0.074s  X <- NOT THIS, this is CPU time combined from all CPU cores
+sys     0m0.017s  X <- NOR THIS, this is time not spent by program, but system calls
 
 ```
