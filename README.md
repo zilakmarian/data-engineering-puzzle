@@ -8,7 +8,23 @@ Expecting you already have Go installed on your system. If not, what are you wai
 
 Go to https://golang.org/doc/install and follow steps for download and installation.
 
-### 2. Go build Go
+### 2. Go init Go
+Need to create package/module info for Go. Just run:
+```
+go mod init puzzle/puzzle.go
+```
+This should create file go.mod with contents similar to:
+```
+module puzzle/puzzle.go
+
+go 1.15
+```
+
+NOTE: Line `go 1.15` might differ depending on Go version used.
+
+NOTE2: Since Go version 1.16, more than 1 file might have been created. Don't worry to much about it. (Unless next step crashes, then it's time to panic!)
+
+### 3. Go build Go
 Create executable for your system by running:
 
 For MacOS and Linux
@@ -25,7 +41,7 @@ go build -o solve_puzzle.exe puzzle\puzzle.go
 ```
 (Run at your own risk! Only gods know what will happen, might be good, might be catastrophic...)
 
-### 3. Go run Go
+### 4. Go run Go
 If all went well, there should be an executable `solve_puzzle`(or `solve_puzzle.exe` for Windows users...). Run it as any other executable:
 
 `./solve_puzzle`
@@ -40,7 +56,7 @@ You may want to specify input file as first argument.
 
 Input file defaults to `./puzzle/puzzle_input.txt` (you know, the bigger one).
 
-### 4. (Optional) Go make yourself some tea
+### 5. (Optional) Go make yourself some tea
 You might want something to drink while you wait.
 
 Just kidding, it does not take that long :)
